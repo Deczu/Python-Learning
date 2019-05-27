@@ -1,5 +1,18 @@
 import ftplib
+import os
 
+
+#check dir
+def check_dir():
+    path = os.getcwd()
+    dirContent = os.listdir(path)
+    print dirContent
+    print("#"*40)
+    return dirContent
+
+
+
+dirContent = check_dir();
 ftp = ftplib.FTP('ftp.sunet.se', 'anonymous', 'anonymous@sunet.se')
 
 print "File List: "
@@ -16,8 +29,12 @@ files = ftp.dir()
 
 print files
 lista = ftp.nlst()
-with open('graph.png', 'wb') as f:
-     ftp.retrbinary('RETR ' + 'graph.png', f.write)
+if 'graph.png' not in dirContent:
+    print("File not in dirContent. \n Downloading new file")
+    with open('graph.png', 'wb') as f:
+         ftp.retrbinary('RETR ' + 'graph.png', f.write)
+else:
+    print("File allredy exists!")
 
 
 print(type(lista))
@@ -29,7 +46,3 @@ for element in lista:
 
 print("#"*40)
 
-counter = 1
-for element in files:
-    print str(counter)+" " + element
-    counter+=1
