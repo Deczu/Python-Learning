@@ -44,7 +44,7 @@ def render():
     pygame.draw.rect(screen,(255,0,0),ball);
     sys_font = pygame.font.SysFont("None",60)
     text=str(score[0])+":"+str(score[1]);
-    rendered = sys_font.render(text,0,(255,255,255))
+    rendered = sys_font.render(text,0,(25,215,255))
     screen.blit(rendered,((rez[0]/2)-60,0))
     pygame.display.update();
     pygame.display.flip();
