@@ -19,13 +19,13 @@ class Send:
         if skip_rsa:
             self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-    def executeCommand(self,command):
+    def execute_command(self,command):
         stdin, stdout, srderr = self.client.exec_command(command)
         print "STD Input: " + stdin.read() + "\n"
         print "STD Output: "+ stdout.read()+ "\n"
         print "STD ERROR: " + stderr.read()+ "\n"
 
-    def sendFile(self,filename, localFPath, remoteFPath):
+    def send_file(self,filename, localFPath, remoteFPath):
         transport.self.client.get_transport()
         sftp = paramiko.SFTPClient.from_transport(transport)
         if isinstance(filename,str):
